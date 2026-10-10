@@ -50,6 +50,20 @@ claude plugin install antislop-writing@antislop-writing
 
 Set the level with `ANTISLOP_LEVEL=60` or the file `~/.config/antislop-writing/level`. Pick the plugin or `npx skills`, not both. Together they list each skill twice.
 
+Claude Desktop. The app has two parts, and each installs differently.
+
+- The Code tab is Claude Code inside the app. It reads the same `~/.claude/skills`, plugins, and `CLAUDE.md`. Run `npx github:apgruzdev/antislop-writing` in a terminal and restart the app. The plugin above works too.
+- The Chat and Cowork tabs take skills from your claude.ai account, not from `~/.claude`. Upload ZIP files. Build them (macOS and Linux):
+
+  ```bash
+  git clone https://github.com/apgruzdev/antislop-writing && cd antislop-writing/skills
+  for d in */; do zip -rqX "${d%/}.zip" "$d" -x "*.DS_Store"; done
+  ```
+
+  Then, in the app: Customize → Skills → "+" → Create skill → Upload a skill, and upload `antislop-writing.zip`. Upload the other eight if you want them, one ZIP each. On Free, Pro, and Max, turn on Code execution and file creation in Settings → Capabilities, or skills do not run. Open a new chat. Paste [`prompts/mini.md`](prompts/mini.md) into your personal preferences for the always-on rule.
+
+Menu names change between app versions. Current steps: [Anthropic's help article](https://support.claude.com/en/articles/12512180-use-skills-in-claude). The ZIP layout and the skill files pass the checks Anthropic recommends (`skills-ref validate`). We did not upload the ZIPs to an account. `antislop-writing` works without the other skills. We did not test whether `statya`, `post`, `promo`, and `ux-copy` can follow their `../redaktura/references/…` links when the skills are uploaded one by one.
+
 No skill support (ChatGPT, web Claude, web Gemini): paste [`prompts/mini.md`](prompts/mini.md) into your custom instructions. It has 817 characters, which fits the ChatGPT Free limit of 1,500. The full version is [`prompts/kernel.md`](prompts/kernel.md).
 
 ## The dial

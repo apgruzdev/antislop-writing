@@ -52,6 +52,20 @@ claude plugin install antislop-writing@antislop-writing
 
 Уровень в плагине: переменная `ANTISLOP_LEVEL=60` или файл `~/.config/antislop-writing/level`. Выберите одно: плагин или `npx skills`. Вместе они покажут навыки дважды.
 
+Claude Desktop. У приложения две части, и установка у них разная.
+
+- Вкладка Code — это Claude Code внутри приложения. Она читает те же `~/.claude/skills`, плагины и `CLAUDE.md`. Выполните в терминале `npx github:apgruzdev/antislop-writing` и перезапустите приложение. Плагин тоже подходит: поставьте его командами `claude plugin` выше.
+- Вкладки Chat и Cowork берут навыки из аккаунта claude.ai, а не из `~/.claude`. Нужна загрузка ZIP. Соберите архивы (на macOS и Linux):
+
+  ```bash
+  git clone https://github.com/apgruzdev/antislop-writing && cd antislop-writing/skills
+  for d in */; do zip -rqX "${d%/}.zip" "$d" -x "*.DS_Store"; done
+  ```
+
+  Затем в приложении: Customize → Skills → «+» → Create skill → Upload a skill, и загрузите `antislop-writing.zip`. Остальные восемь по желанию, каждый отдельным архивом. Для Free, Pro и Max включите Code execution and file creation в Settings → Capabilities: без этого навыки не работают. Откройте новый чат. Правило «всегда включено» вставьте из [`prompts/mini.md`](prompts/mini.md) в личные предпочтения.
+
+Названия пунктов меню меняются между версиями приложения. Актуальные шаги: [справка Anthropic](https://support.claude.com/en/articles/12512180-use-skills-in-claude). Структура архива и валидность проверены по их требованиям (`skills-ref validate`). Сами архивы в аккаунт не загружались. `antislop-writing` работает и без остальных навыков. Работает ли ссылка `../redaktura/references/…` у `statya`, `post`, `promo` и `ux-copy`, когда навыки загружены порознь, не проверено.
+
 Платформы без навыков (ChatGPT, веб-версии Claude и Gemini). Вставьте [`prompts/mini.md`](prompts/mini.md) в пользовательские инструкции. Он занимает 817 знаков и влезает в лимит ChatGPT Free (1500). Полная версия: [`prompts/kernel.md`](prompts/kernel.md) (1,8 тыс. знаков).
 
 ## Как пользоваться
@@ -137,6 +151,7 @@ python3 skills/antislop-writing/scripts/antislop_lint.py --level 100 --mode repl
 | Платформа | Навыки | «Всегда включено» | Что проверено |
 |---|---|---|---|
 | Claude Code | `~/.claude/skills` или плагин | блок в `~/.claude/CLAUDE.md` или хук плагина | Установка навыков и плагина в изолированном конфиге, `claude plugin validate --strict`, хук запущен отдельно. Живой сеанс не проверен: сессия Claude истекла |
+| Claude Desktop | вкладка Code: как Claude Code; Chat и Cowork: ZIP через Customize → Skills | вкладка Code: `CLAUDE.md`; Chat и Cowork: личные предпочтения | Структура ZIP и валидатор. В аккаунт не загружалось |
 | OpenCode | `~/.agents/skills`, `.agents/skills` | `AGENTS.md` (читает и `~/.claude/CLAUDE.md`) | **Живой запуск:** навыки найдены, уровень из `AGENTS.md` прочитан |
 | Codex | `~/.agents/skills` | `~/.codex/AGENTS.md` (или `AGENTS.override.md`) | Пути по документации. Codex не запускался |
 | Gemini CLI | `~/.agents/skills` (по данным `skills`) | `~/.gemini/GEMINI.md` | Пути по документации. Не запускался |
