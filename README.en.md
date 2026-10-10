@@ -86,6 +86,14 @@ Rules A to E switch on at their own level and stay on above it.
 
 The numbers 25, 30, and 40 words are the author's calibration. The standards do not give them. Full ladder with sources: [`levels.md`](skills/antislop-writing/references/levels.md). Where the sources disagree, and how the conflicts are resolved: [`conflicts.md`](skills/antislop-writing/references/conflicts.md).
 
+## Do the other skills run?
+
+Not all at once. Skills are separate files, and none starts another by itself. `antislop-writing` holds the core rules and a genre-to-helper table, and it asks the agent to load the matching helper. The agent decides. One request fits one helper, not nine. Each helper can also fire alone from its own description.
+
+Live OpenCode test, Claude Sonnet 5.5, one run per scenario: a Telegram post loaded `antislop-writing`, then `post`. An English runbook loaded `antislop-writing`, then `simple-english`. "Compress this document" loaded `lossless-doc-compress`, then `antislop-writing`. The first run exposed two failures, both fixed: the helper table sat in a reference file the model never opened, and compression ran without `antislop-writing`.
+
+Still weak: on a small model (Claude Haiku 5.5) the post request loaded no skill, and only the `AGENTS.md` rules applied. This is why the always-on rule exists. `lossless-doc-compress` flags doubtful text instead of cutting it, so some clichés stay with a FLAG note. Not tested: Claude Code, Codex, other agents, and the Russian helpers `statya`, `redaktura`, `promo`, `ux-copy`.
+
 ## What the first test run showed
 
 Four tasks, one run per condition ([`examples/eval`](examples/eval/README.md)). With the skill, a chat answer lost its headings (8 to 0) and bold text (10 to 0), and got 17 to 32% shorter. In one task the baseline invented a benefit the prompt never gave ("easy to search by date"). The skill version did not.
