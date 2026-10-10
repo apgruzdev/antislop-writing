@@ -1,0 +1,13 @@
+{
+  "name": "antislop-writing",
+  "version": "0.1.0",
+  "description": "Правила письма против нейрослопа: ASD-STE100, упрощённый технический русский (ГОСТ Р 58049-2017), редактура по Сарычевой, сжатие без потерь. Ползунок строгости 20-100%. Русский и английский.",
+  "author": {
+    "name": "apgruzdev",
+    "url": "https://github.com/apgruzdev"
+  },
+  "homepage": "https://github.com/apgruzdev/antislop-writing",
+  "repository": "https://github.com/apgruzdev/antislop-writing",
+  "license": "MIT",
+  "keywords": ["writing", "editing", "russian", "ste", "asd-ste100", "anti-slop", "agent-skills"]
+}

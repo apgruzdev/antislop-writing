@@ -1,0 +1,49 @@
+{
+  "$comment": "Pinned snapshots of third-party skills. Do not edit the copies in skills/ by hand. Check: node scripts/sync-upstream.mjs --check. Update: node scripts/sync-upstream.mjs --update.",
+  "sources": [
+    {
+      "id": "simple-english",
+      "title": "Simple English (ASD-STE100)",
+      "author": "AminBlg",
+      "repo": "https://github.com/AminBlg/SimpleEnglish",
+      "ref": "main",
+      "sha": "a6fcb4fde098b33617cc1578d151ebf58774b883",
+      "license": "MIT",
+      "licenseFile": "LICENSE",
+      "copy": [
+        { "from": "skills/simple-english", "to": "skills/simple-english" }
+      ]
+    },
+    {
+      "id": "redaktura-skills",
+      "title": "redaktura-skills (редактура по Сарычевой)",
+      "author": "Людмила Сарычева, Никита Архипов",
+      "repo": "https://github.com/N1arko/redaktura-skills",
+      "ref": "main",
+      "sha": "d1ebaff4fb8b97f939826a1cac284c10303be6f1",
+      "license": "CC-BY-4.0",
+      "licenseFile": "LICENSE",
+      "copy": [
+        { "from": "redpolitika", "to": "skills/redpolitika" },
+        { "from": "redaktura", "to": "skills/redaktura" },
+        { "from": "statya", "to": "skills/statya" },
+        { "from": "post", "to": "skills/post" },
+        { "from": "promo", "to": "skills/promo" },
+        { "from": "ux-copy", "to": "skills/ux-copy" }
+      ]
+    },
+    {
+      "id": "lossless-doc-compress",
+      "title": "lossless-doc-compress (ML System Design)",
+      "author": "Valerii Babushkin, Arseny Kravchenko",
+      "repo": "https://github.com/ML-SystemDesign/MLSystemDesign",
+      "ref": "main",
+      "sha": "8dd0d88852fe7445e9d2627c59124f0f161040c1",
+      "license": "MIT",
+      "licenseFile": "LICENSE",
+      "copy": [
+        { "from": "skills/lossless-doc-compress", "to": "skills/lossless-doc-compress" }
+      ]
+    }
+  ]
+}

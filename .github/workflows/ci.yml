@@ -1,0 +1,27 @@
+name: ci
+on:
+  push:
+  pull_request:
+  schedule:
+    - cron: "0 6 * * 1"
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Node tests
+        run: node --test tests/*.test.mjs
+      - name: Python tests
+        run: python3 -m unittest discover -s tests -p 'test_*.py'
+      - name: Vendored skills match the pinned upstream commits
+        run: node scripts/sync-upstream.mjs --check
+      - name: Skills follow the Agent Skills spec
+        run: |
+          python3 -m pip install skills-ref
+          for d in skills/*/; do agentskills validate "$d"; done

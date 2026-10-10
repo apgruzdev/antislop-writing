@@ -1,0 +1,19 @@
+{
+  "description": "Loads the always-on antislop-writing rules at the start of every session.",
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "startup|resume|clear|compact",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node",
+            "args": ["${CLAUDE_PLUGIN_ROOT}/hooks/session-start.mjs"],
+            "timeout": 5,
+            "statusMessage": "Loading antislop-writing rules..."
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "name": "antislop-writing",
+  "version": "0.1.0",
+  "description": "Правила письма против нейрослопа для AI-агентов: ASD-STE100, упрощённый технический русский (ГОСТ Р 58049-2017), редактура по Сарычевой, сжатие без потерь. Ползунок строгости 20-100%.",
+  "type": "module",
+  "bin": {
+    "antislop-writing": "bin/antislop-writing.mjs"
+  },
+  "files": [
+    "bin",
+    "lib",
+    "hooks",
+    "prompts",
+    "skills",
+    ".claude-plugin"
+  ],
+  "scripts": {
+    "test": "node --test tests/*.test.mjs && python3 -m unittest discover -s tests -p 'test_*.py'",
+    "sync:check": "node scripts/sync-upstream.mjs --check",
+    "sync:update": "node scripts/sync-upstream.mjs --update"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/apgruzdev/antislop-writing.git"
+  },
+  "homepage": "https://github.com/apgruzdev/antislop-writing",
+  "keywords": ["agent-skills", "writing", "russian", "ste", "asd-ste100", "slop", "claude-code", "codex", "opencode"],
+  "license": "MIT"
+}
